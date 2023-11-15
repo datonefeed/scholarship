@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DTU SCHOLARSHIP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #container {
+            background-color: #19896b;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+       
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #52ca54;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            height: 45px;
+            font-size: 25px;
+            line-height: 100%;
+            
+        }
+        button:active{
+            margin-bottom: 20px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        h2{
+            font-size: 30px;
+        }
+
+        p{          
+            font-size: 30px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h2>DTU SCHOLARSHIP</h2>
+        <form id="scholarshipForm">
+            <label for="averageScore">Average of grade in current</label>
+            <input type="number" id="averageScore" name="averageScore" step="0.1" required>
+
+            <label for="lastYearScore">Average of grade in previous</label>
+            <input type="number" id="lastYearScore" name="lastYearScore" step="0.1" required>
+
+            <label for="siblings">Brother and sister</label>
+            <input type="number" id="siblings" name="siblings" required>
+
+            <button type="button" onclick="tinhHocBong()">CHECK SCHOLARSHIP</button>
+
+            <p id="result"></p>
+        </form>
+    </div>
+
+    <script>
+        function tinhHocBong() {
+            const diemTrungBinh = parseFloat(document.getElementById("averageScore").value);
+            const diemTrungBinhNamTruoc = parseFloat(document.getElementById("lastYearScore").value);
+            const soAnhChiEm = parseInt(document.getElementById("siblings").value);
+
+            let hocBong = 0;
+
+            if (diemTrungBinh > 9) {
+                hocBong = 5000000;
+            } else if (diemTrungBinh > 8 && diemTrungBinhNamTruoc >= 8) {
+                hocBong = 3500000;
+            } else if (diemTrungBinh > 8){
+                hocBong = 500000;
+            }
+
+            if (soAnhChiEm >= 2 && hocBong < 1000000) {
+                hocBong = 1000000;
+            }
+
+            document.getElementById("result").innerHTML = "the scholarship is " + hocBong + " VND";
+        }
+    </script>
+</body>
+</html>
